@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="main">
+        <div class="card">
+          <div class="left">
+            <div id="details">
+              <h1 id="head">Create your account</h1>
+              <form class="form" action="post">
+                <label class="label" htmlFor="email">
+                  Email
+                </label>
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email ID"
+                  id="email"
+                  class="custom-input"
+                />
+
+                <label htmlFor="pass" class="label">
+                  Create Password
+                </label>
+
+                <input
+                  type="password"
+                  name="password"
+                  id="pass"
+                  class="custom-input"
+                  placeholder="Create your password"
+                  autoComplete="current-password"
+                />
+
+                <button
+                  class="button"
+                  onclick="alert('Account created successfully')"
+                >
+                  CREATE ACCOUNT
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="right"></div>
+          
+        </div>
+      </div>
+    </div>
+</body>
+</html>

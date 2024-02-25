@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lost and Found</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    overflow: hidden;
+    
+  }
+  .main {
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(
+      ellipse at bottom,
+      #1a68d3 5%,
+      transparent 60%
+    ),
+    linear-gradient(136deg, transparent, #71c7ee 290%),
+    linear-gradient(115deg, #9d9af1, transparent 40%),
+    linear-gradient(180deg, transparent 0, #1a68d3 70%),
+    radial-gradient(ellipse at -70% -180%, transparent 80%, #71c7ee 0),
+    radial-gradient(ellipse at bottom, #1a68d3 40%, transparent 80%),
+    radial-gradient(ellipse at 5% 340%, transparent 80%, #bfc2f4 0);
+  background-color: #1a68d3;
+  }
+  h1, h2 {
+    text-align: center;
+  }
+  .container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+  form {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  input[type="text"] {
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  button {
+    padding: 8px 20px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  button:hover {
+    background-color: #d5d3d3;
+  }
+</style>
+<link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <div class="main">
+    <div class="nav">
+        <div class="logo">
+        <a class="link" href="home.html">Tracify</a>   
+        </div>
+        <div class="empty"></div>
+        <div class="info">
+            <div class="signin">
+                <a class="link2" href="signin.html">Sign In</a>
+            </div>
+            <div class="signup">
+                <a class="link2" href="signup.html">SignUp</a>
+            </div>
+
+           
+        </div>
+    </div>
+<div class="container">
+<h1>Lost and Found</h1>
+
+<form id="missingItemsForm">
+  <label for="missingKeywords">Keywords of Missing Item:</label><br>
+  <input type="text" id="missingKeywords" name="missingKeywords"><br><br>
+  <button type="button" onclick="submitKeywords()">Submit</button>
+</form>
+
+<form id="searchForm">
+  <label for="searchKeywords">Search for Lost Item:</label><br>
+  <input type="text" id="searchKeywords" name="searchKeywords">
+  <button type="button" onclick="searchItem()">Search</button>
+</form>
+</div>
+</div>
+
+<script>
+  let missingItems = {};
+
+  function submitKeywords() {
+    const keywordsInput = document.getElementById("missingKeywords").value.trim().toLowerCase().split(" ");
+    if (keywordsInput.length === 0) {
+      alert("Please enter keywords.");
+      return;
+    }
+
+    const itemId = Object.keys(missingItems).length + 1;
+    missingItems[itemId] = keywordsInput;
+    document.getElementById("missingKeywords").value = "";
+    console.log("Missing Items:", missingItems);
+  }
+
+  function searchItem() {
+    const searchInput = document.getElementById("searchKeywords").value.trim().toLowerCase().split(" ");
+    if (searchInput.length === 0) return;
+    for (const itemId in missingItems) {
+      const keywords = missingItems[itemId];
+      const matchCount = keywords.filter(keyword => searchInput.includes(keyword)).length;
+      const matchPercentage = (matchCount / keywords.length) * 100;
+
+      if (matchPercentage >= 80) {
+        alert("Item found!");
+        return;
+      }
+    }
+    alert("Item not found!");
+  }
+</script>
+
+</body>
+</html>
